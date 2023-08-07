@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}
+Парсинг топ 10
+{% endblock %}
+
+{% block h1 %}
+Парсинг топ 10
+{% endblock %}
+
+{% block content %}
+<table style="border-collapse: collapse; width: 100%; font-size: 12px; font-family: Arial, sans-serif; table-layout: fixed;">
+    <thead>
+    <tr>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            URL
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Title
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Description
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            H1
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Text
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden; color: blue"><a
+                href="{{ i['url'] }}" target="_blank">{{ i["url"] }}</a></td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">{{ i["title"] }}</td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">{{ i["description"]
+            }}
+        </td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">{{ i["h1"] }}</td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">
+            <table style="border-collapse: collapse; width: 100%; font-size: 10px; font-family: Arial, sans-serif; table-layout: fixed;">
+                {% for j in i["text"] %}
+                <tr>
+                    <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">{{ j[0] }}</td>
+                    <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">{{ j[1] }}</td>
+                    <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;">{{ j[2] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

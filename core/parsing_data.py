@@ -111,12 +111,11 @@ def parse_data(query):
                 text = lemmatize_text(soup.get_text())
                 filtered_res.append(
                     {
-                        url: {
-                            "title": title,
-                            "description": description,
-                            "h1": h1,
-                            "text": text,
-                        }
+                        "url": url,
+                        "title": title,
+                        "description": description,
+                        "h1": h1,
+                        "text": text,
                     }
                 )
             except Exception as e:

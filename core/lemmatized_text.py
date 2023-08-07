@@ -28,7 +28,7 @@ def lemmatize_text(text):
     filtered_words = [word for word in text if word not in stop_words]
     counter = Counter(filtered_words)
     return [
-        {word: [counter[word], f"{round(counter[word] / l * 100, 2)}%"]}
+        [word, counter[word], f"{round(counter[word] / l * 100, 2)}%"]
         for word, _ in counter.most_common(10)
     ]
 
@@ -43,12 +43,12 @@ def get_ngramms(text):
 
 
 def parse_text(url=None, text=None):
-    if url is not None:
+    if url is not None and len(url) > 5:
         html = requests.get(url).content.decode("utf-8")
         soup = BeautifulSoup(html, "html.parser")
         text = soup.get_text()
         result = lemmatize_text(text)
         return {"lemmas": result, "ngrams": get_ngramms(text)}
-    elif text is not None:
+    elif text is not None and len(text) > 300:
         result = lemmatize_text(text)
         return {"lemmas": result, "ngrams": get_ngramms(text)}
