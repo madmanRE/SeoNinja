@@ -49,7 +49,6 @@ stop_domains = [
 ]
 
 
-
 def check_domain(domain):
     pattern = r"\/\/(?:www\.)?(\w+)"
     res = re.findall(pattern, domain)
@@ -95,15 +94,31 @@ def parse_data(query):
         domain = check_domain(url)
         if domain and domain not in stop_domains:
             try:
-                html = requests.get(url).content.decode('utf-8')
-                soup = BeautifulSoup(html, 'html.parser')
+                html = requests.get(url).content.decode("utf-8")
+                soup = BeautifulSoup(html, "html.parser")
 
-                title = soup.title.string.replace('\n', ' ') if soup.title else "No title found"
-                description = soup.find('meta', attrs={'name': 'description'})['content'] if soup.find('meta', attrs={
-                    'name': 'description'}) else "No description found"
+                title = (
+                    soup.title.string.replace("\n", " ")
+                    if soup.title
+                    else "No title found"
+                )
+                description = (
+                    soup.find("meta", attrs={"name": "description"})["content"]
+                    if soup.find("meta", attrs={"name": "description"})
+                    else "No description found"
+                )
                 h1 = soup.h1.string if soup.h1 else "No h1 tag found"
                 text = lemmatize_text(soup.get_text())
-                filtered_res.append({url: {"title": title, "description": description, "h1": h1, "text": text}})
+                filtered_res.append(
+                    {
+                        url: {
+                            "title": title,
+                            "description": description,
+                            "h1": h1,
+                            "text": text,
+                        }
+                    }
+                )
             except Exception as e:
                 pass
     return filtered_res

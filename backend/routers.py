@@ -1,15 +1,17 @@
 from core.parsing_data import parse_data
 from core.lemmatized_text import parse_text
 from fastapi.encoders import jsonable_encoder
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, Request
+from fastapi.templating import Jinja2Templates
 
-instruments_routers = APIRouter(
-    prefix='/instruments',
-    tags=['Instruments']
-)
+instruments_routers = APIRouter(prefix="/instruments", tags=["Instruments"])
+
+templates = Jinja2Templates(directory='templates')
 
 
-@instruments_routers.get("/parsing_top10")
+
+
+@instruments_routers.get("/parsing_top10_meta")
 async def parsing_top10_meta(query: str):
     result = parse_data(query)
     return jsonable_encoder(result)

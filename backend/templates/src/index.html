@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul role="list" class="divide-y divide-gray-100">
+    <li class="flex justify-between gap-x-6 py-5">
+        <a href="#">
+            <div class="flex min-w-0 gap-x-4">
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                     src="{{ url_for ('static', path='img/free-icon-seo-6029659.png') }}"
+                     alt="">
+                <div class="min-w-0 flex-auto">
+                    <p class="text-sm font-semibold leading-6 text-gray-900">Анализ ТОП10 по запросу</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: url, title, description, h1,
+                        popular words</p>
+                </div>
+            </div>
+        </a>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~5 мин</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5">
+        <a href="#">
+            <div class="flex min-w-0 gap-x-4">
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                     src="{{ url_for ('static', path='img/free-icon-seo-1055645.png') }}"
+                     alt="">
+                <div class="min-w-0 flex-auto">
+                    <p class="text-sm font-semibold leading-6 text-gray-900">Выгрузка n-грамм из текста</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: popular words, bigramms,
+                        trigramms</p>
+                </div>
+            </div>
+        </a>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~5 мин</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5">
+        <a href="#">
+            <div class="flex min-w-0 gap-x-4">
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                     src="{{ url_for ('static', path='img/free-icon-seo-1238445.png') }}"
+                     alt="">
+                <div class="min-w-0 flex-auto">
+                    <p class="text-sm font-semibold leading-6 text-gray-900">Комбинатор ключевых фраз</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: скомбинированные фразы</p>
+                </div>
+            </div>
+        </a>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~0 мин</p>
+        </div>
+    </li>
+</ul>
+{% endblock %}
