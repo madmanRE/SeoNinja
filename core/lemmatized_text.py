@@ -13,6 +13,22 @@ m = Mystem()
 stop_words = stopwords.words("russian") + stopwords.words("english")
 
 
+def get_lems(text):
+    text = re.sub(r'[\n\r\t"©«»]', " ", text)
+    text = text.replace("  ", " ")
+    text = re.sub(r"\s{1,}", " ", text)
+    text = m.lemmatize(
+        text.translate(str.maketrans("", "", string.punctuation)).lower()
+    )
+    text = [word for word in text if word not in stop_words]
+    while " " in text:
+        text.remove(" ")
+    while "  " in text:
+        text.remove("  ")
+    text = set(text)
+    return list(text)
+
+
 def lemmatize_text(text):
     text = re.sub(r'[\n\r\t"©«»]', " ", text)
     text = text.replace("  ", " ")

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Комбинатор запросов
+{% endblock %}
+
+{% block h1 %}
+Комбинатор запросов
+{% endblock %}
+
+{% block content %}
+<form method="get">
+    <textarea id="textinput1" name="textinput" rows="10" cols="40"
+              style="display: inline-block; border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; background-color: rgba(0, 0, 0, 0);"></textarea>
+    <textarea id="textinput2" name="textinput" rows="10" cols="40"
+              style="display: inline-block; border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; background-color: rgba(0, 0, 0, 0);"></textarea>
+    <textarea id="textinput3" name="textinput" rows="10" cols="40"
+              style="display: inline-block; border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; background-color: rgba(0, 0, 0, 0);"></textarea>
+
+    <br>
+    <button type="button" id="combine"
+            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 150px;">
+        Скомбинировать
+    </button>
+</form>
+<br>
+<hr>
+<br>
+<ul>
+
+</ul>
+<br>
+<button type="button" id="copy"
+        style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 150px;"
+        class="hidden">
+    Скопировать
+</button>
+{% endblock %}
+
+{% block script %}
+document.getElementById("combine").onclick = function() {
+let textInputs = document.querySelectorAll('textarea');
+let combinedText = "";
+
+textInputs[0].value.split('\n').forEach((query) => {
+textInputs[1].value.split('\n').forEach((value1) => {
+textInputs[2].value.split('\n').forEach((value2) => {
+combinedText += query + " " + value1 + " " + value2 + "\n";
+});
+});
+});
+
+console.log(combinedText);
+
+let ulElement = document.querySelector('ul');
+combinedText.split("\n").forEach((text) => {
+if (text.trim() !== "") {
+let liElement = document.createElement('li');
+liElement.textContent = text;
+ulElement.appendChild(liElement);
+}
+});
+
+document.getElementById("copy").classList.remove("hidden");
+}
+
+
+document.getElementById("copy").onclick = function() {
+let text = "";
+let content = document.querySelectorAll("li");
+content.forEach((element) => {
+let itemText = element.textContent.trim();
+if (itemText !== "") {
+text += itemText + "\n";
+}
+});
+navigator.clipboard.writeText(text)
+.then(() => {
+console.log('Text copied to clipboard');
+})
+.catch(err => {
+console.error('Error in copying text: ', err);
+});
+}
+{% endblock %}

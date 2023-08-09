@@ -1,5 +1,5 @@
 from core.parsing_data import parse_data
-from core.lemmatized_text import parse_text
+from core.lemmatized_text import parse_text, get_lems
 from fastapi.encoders import jsonable_encoder
 from fastapi import APIRouter, Depends, status, Request
 from fastapi.responses import RedirectResponse
@@ -29,3 +29,17 @@ async def parse_text_data(request: Request):
     text = form.get('textinput')
     result = jsonable_encoder(parse_text(url, text))
     return templates.TemplateResponse("src/lemmatize_text.html", {"request": request, "data": result})
+
+
+@instruments_routers.post("/lemmatize_queries")
+async def lemmatize_queries(request: Request):
+    form = await request.form()
+    queries = form.get("queriesinput")
+    result = jsonable_encoder(get_lems(queries))
+    return templates.TemplateResponse("src/lemmatize_queries.html", {"request": request, "data": result})
+
+
+
+@instruments_routers.get("/combine_queries")
+async def combine_queries(request: Request):
+    return templates.TemplateResponse("src/combine_queries.html", {"request": request})

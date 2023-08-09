@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Ламматизатор запросов
+{% endblock %}
+
+{% block h1 %}
+Ламматизатор запросов
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for i in data %}
+    <li>
+        {{i}}
+    </li>
+    {% endfor %}
+</ul>
+<hr>
+<br>
+<button id="copy" style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 120px;">Скопировать</button>
+{% endblock %}
+
+{% block script %}
+    document.getElementById("copy").onclick = function() {
+    let text = "";
+    let content = document.querySelectorAll("li");
+    content.forEach((element) => {
+        let itemText = element.textContent.trim();
+        if (itemText !== "") {
+            text += itemText + "\n";
+        }
+    });
+    navigator.clipboard.writeText(text)
+    .then(() => {
+        console.log('Text copied to clipboard');
+    })
+    .catch(err => {
+        console.error('Error in copying text: ', err);
+    });
+}
+{% endblock %}
+
+

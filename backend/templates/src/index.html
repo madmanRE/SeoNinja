@@ -1,64 +1,111 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <ul role="list" class="divide-y divide-gray-100">
-    <li class="flex justify-between gap-x-6 py-5">
-        <a href="#">
-            <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
-                     src="{{ url_for ('static', path='img/free-icon-seo-6029659.png') }}"
-                     alt="">
-                <div class="min-w-0 flex-auto">
-                    <p class="text-sm font-semibold leading-6 text-gray-900">Анализ ТОП10 по запросу</p>
-                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: url, title, description, h1,
-                        popular words</p>
-                    <form action="/instruments/parsing_top10_meta" method="POST">
-                        <input type="text" placeholder="Введите запрос" name="query" style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
-                        <br>
-                        <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">Go</button>
-                    </form>
-                </div>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <div class="flex min-w-0 gap-x-4">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                 src="{{ url_for ('static', path='img/free-icon-seo-6029659.png') }}"
+                 alt="">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Анализ ТОП10 по запросу</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: url, title, description, h1,
+                    popular words</p>
+                <form action="/instruments/parsing_top10_meta" method="POST" class="hidden">
+                    <input type="text" placeholder="Введите запрос" name="query"
+                           style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
+                    <br>
+                    <button type="submit"
+                            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
+                        Go
+                    </button>
+                </form>
             </div>
-        </a>
+        </div>
         <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
             <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~1 мин</p>
         </div>
     </li>
-    <li class="flex justify-between gap-x-6 py-5">
-        <a href="#">
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <div class="flex min-w-0 gap-x-4">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                 src="{{ url_for ('static', path='img/free-icon-seo-1055645.png') }}"
+                 alt="">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Выгрузка n-грамм из текста</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: popular words, bigramms,
+                    trigramms</p>
+                <form action="/instruments/lemmatize_text" method="POST" class="hidden">
+                    <input type="text" placeholder="Введите url" name="urlinput"
+                           style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
+                    <br>
+                    <textarea name="textinput" rows="5" cols="40"
+                              style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px"></textarea>
+                    <br>
+                    <button type="submit"
+                            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
+                        Go
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~5 сек</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <div class="flex min-w-0 gap-x-4">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                 src="{{ url_for ('static', path='img/free-icon-seo-report-6268738.png') }}"
+                 alt="">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Лемматизация запросов</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: list of lemmatized queries,
+                    lemmatized text</p>
+                <form action="/instruments/lemmatize_queries" method="POST" class="hidden">
+                    <textarea name="queriesinput" rows="10" cols="40"
+                              style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px"></textarea>
+                    <br>
+                    <button type="submit"
+                            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
+                        Go
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~3 сек</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <a href="/instruments/combine_queries">
             <div class="flex min-w-0 gap-x-4">
                 <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
-                     src="{{ url_for ('static', path='img/free-icon-seo-1055645.png') }}"
+                     src="{{ url_for ('static', path='img/free-icon-seo-report-4375489.png') }}"
                      alt="">
                 <div class="min-w-0 flex-auto">
-                    <p class="text-sm font-semibold leading-6 text-gray-900">Выгрузка n-грамм из текста</p>
-                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: popular words, bigramms,
-                        trigramms</p>
-                    <form action="/instruments/lemmatize_text" method="POST">
-                        <input type="text" placeholder="Введите url" name="urlinput" style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
-                        <br>
-                        <textarea name="textinput" rows="5" cols="40" style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px"></textarea>
-                        <br>
-                        <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">Go</button>
-                    </form>
+                    <p class="text-sm font-semibold leading-6 text-gray-900">Комбинатор запросов</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: list of combined queries</p>
                 </div>
             </div>
         </a>
         <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
-            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~5 сек</p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~3 сек</p>
         </div>
-
     </li>
 </ul>
 {% endblock %}
 {% block script %}
-         const toggleButtons = document.querySelectorAll('.h-12.w-12.flex-none.rounded-full.bg-gray-50');
-    const forms = document.querySelectorAll('form');
+const toggleButtons = document.querySelectorAll('.h-12.w-12.flex-none.rounded-full.bg-gray-50');
+const forms = document.querySelectorAll('form');
 
-    toggleButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            forms[index].classList.toggle('hidden');
-        });
-    });
+toggleButtons.forEach((button, index) => {
+button.addEventListener('click', () => {
+forms[index].classList.toggle('hidden');
+});
+});
 {% endblock %}
