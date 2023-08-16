@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Съем позиций
+{% endblock %}
+
+{% block h1 %}
+Съем позиций
+{% endblock %}
+
+{% block content %}
+<table style="border-collapse: collapse; width: 100%; font-size: 12px; font-family: Arial, sans-serif; table-layout: fixed;">
+    <thead>
+    <tr>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 50%">
+            Запрос
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Yandex M
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Google M
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Yandex D
+        </th>
+        <th style="border: 1px solid #dddddd; text-align: left; font-size: 16px; padding: 8px; background-color: #f2f2f2; width: 20%">
+            Google D
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden; color: blue"></td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;"></td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;"></td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;"></td>
+        <td style="border: 1px solid #dddddd; text-align: left; padding: 8px; overflow: hidden;"></td>
+    </tr>
+    </tbody>
+</table>
+{% endfor %}
+{% endblock %}

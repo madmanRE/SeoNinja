@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 
+{% block style %}
+<style>
+  body {
+    background-image: url('{{ url_for('static', path='img/703-transformed.png') }}');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  form {
+  display: flex;
+  flex-direction: column;
+  }
+
+
+
+</style>
+{% endblock %}
+
 {% block content %}
 <ul role="list" class="divide-y divide-gray-100">
     <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
@@ -11,10 +30,11 @@
                 <p class="text-sm font-semibold leading-6 text-gray-900">Анализ ТОП10 по запросу</p>
                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: url, title, description, h1,
                     popular words</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                        style="color: green">работает</span></p>
                 <form action="/instruments/parsing_top10_meta" method="POST" class="hidden">
                     <input type="text" placeholder="Введите запрос" name="query"
                            style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
-                    <br>
                     <button type="submit"
                             style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
                         Go
@@ -36,13 +56,13 @@
                 <p class="text-sm font-semibold leading-6 text-gray-900">Выгрузка n-грамм из текста</p>
                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: popular words, bigramms,
                     trigramms</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                        style="color: green">работает</span></p>
                 <form action="/instruments/lemmatize_text" method="POST" class="hidden">
                     <input type="text" placeholder="Введите url" name="urlinput"
                            style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
-                    <br>
                     <textarea name="textinput" rows="5" cols="40"
                               style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px"></textarea>
-                    <br>
                     <button type="submit"
                             style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
                         Go
@@ -64,15 +84,82 @@
                 <p class="text-sm font-semibold leading-6 text-gray-900">Лемматизация запросов</p>
                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: list of lemmatized queries,
                     lemmatized text</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                        style="color: green">работает</span></p>
                 <form action="/instruments/lemmatize_queries" method="POST" class="hidden">
                     <textarea name="queriesinput" rows="10" cols="40"
                               style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px"></textarea>
-                    <br>
                     <button type="submit"
                             style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
                         Go
                     </button>
                 </form>
+            </div>
+        </div>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~3 сек</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <div class="flex min-w-0 gap-x-4">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                 src="{{ url_for ('static', path='img/free-icon-seo-1238445.png') }}"
+                 alt="">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Съем позиций</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: google and yandex positions</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                        style="color:red">в разработке</span></p>
+                <form action="/instruments/get_positions" method="POST" class="hidden">
+                    <input type="text" placeholder="Введите домен" name="domaininput"
+                           style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px;">
+                    <select name="region"
+                            style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px;">
+                        <option value="1">Москва и Московская область</option>
+                        <option value="213">Москва</option>
+                        <option value="2">Санкт-Петербург</option>
+                        <option value="4">Белгород</option>
+                        <option value="5">Иваново</option>
+                        <option value="6">Калуга</option>
+                        <option value="7">Кострома</option>
+                        <option value="8">Курск</option>
+                    </select>
+                    <textarea name="queriesinput" rows="5" cols="40"
+                              style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px;"></textarea>
+                    <button type="button"
+                            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
+                        Go
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~1 мин</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <div class="flex min-w-0 gap-x-4">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                 src="{{ url_for ('static', path='img/free-icon-seo-5979672.png') }}"
+                 alt="">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Проверка кода ответа</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: response code</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                        style="color: green">работает</span></p>
+                <form action="/instruments/get_status_code" method="POST" class="hidden" id="urlForm">
+                    <input type="text" placeholder="Введите URL" name="url"
+                           style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px; width: 315px;">
+                    <button type="button" id="submitButton"
+                            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
+                        Go
+                    </button>
+                </form>
+                <div id="resp_code" class="hidden">
+                    <p></p>
+                </div>
             </div>
         </div>
         <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -89,6 +176,8 @@
                 <div class="min-w-0 flex-auto">
                     <p class="text-sm font-semibold leading-6 text-gray-900">Комбинатор запросов</p>
                     <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: list of combined queries</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                            style="color: green">работает</span></p>
                 </div>
             </div>
         </a>
@@ -108,4 +197,71 @@ button.addEventListener('click', () => {
 forms[index].classList.toggle('hidden');
 });
 });
+
+const requestUrl = '/instruments/get_status_code';
+
+function sendRequest(method, url, body = null) {
+  return fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  }).then(response => {
+    return response.json();
+  });
+}
+
+const submitButton = document.getElementById('submitButton');
+const urlForm = document.getElementById('urlForm');
+
+submitButton.addEventListener('click', () => {
+  const urlInput = urlForm.querySelector('[name="url"]');
+  const url = urlInput.value;
+
+  data = {
+    "url": url
+  };
+
+ console.log(requestUrl)
+ console.log(data)
+
+  sendRequest("POST", requestUrl, data)
+    .then(data => {
+      showRespCode(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+});
+
+
+function showRespCode(resp_code) {
+  const div = document.getElementById('resp_code');
+  const paragraph = div.querySelector('p');
+  const resp = JSON.stringify(resp_code["response_code"]);
+
+  paragraph.innerText = `Код ответа: ${resp}`;
+
+  if (resp >= 200 && resp < 300) {
+    paragraph.style.color = 'green';
+  } else if (resp >= 300 && resp < 400) {
+    paragraph.style.color = 'orange';
+  } else if (resp >= 400 && resp < 500) {
+    paragraph.style.color = 'red';
+  } else {
+    paragraph.style.color = 'black';
+  }
+
+  div.classList.remove('hidden');
+
+  setTimeout(() => {
+    div.classList.add('hidden');
+  }, 3000);
+}
+
+
+
+
+
 {% endblock %}

@@ -7,6 +7,8 @@ from nltk.corpus import stopwords
 from pymystem3 import Mystem
 from itertools import chain
 from collections import Counter
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
 m = Mystem()
 
@@ -43,6 +45,17 @@ def lemmatize_text(text):
     l = len(text)
     filtered_words = [word for word in text if word not in stop_words]
     counter = Counter(filtered_words)
+    cloud = WordCloud().generate(" ".join(filtered_words))
+    image_path = "backend/static/img/wordcloud.jpg"
+    cloud.to_file(image_path)
+    words = [word for word, _ in counter.most_common(10)]
+    frequencies = [counter[word] for word in words]
+    plt.figure(figsize=(10, 6))
+    plt.bar(words, frequencies)
+    plt.xticks(rotation=45)
+    chart_path = "backend/static/img/word_frequencies_chart.jpg"
+    plt.savefig(chart_path, format="jpg")
+    plt.close()
     return [
         [word, counter[word], f"{round(counter[word] / l * 100, 2)}%"]
         for word, _ in counter.most_common(10)
@@ -68,3 +81,6 @@ def parse_text(url=None, text=None):
     elif text is not None and len(text) > 300:
         result = lemmatize_text(text)
         return {"lemmas": result, "ngrams": get_ngramms(text)}
+
+
+

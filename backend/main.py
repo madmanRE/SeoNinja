@@ -3,7 +3,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from backend.routers import instruments_routers
 
+
 app = FastAPI()
+
 
 templates = Jinja2Templates(directory='backend/templates')
 
