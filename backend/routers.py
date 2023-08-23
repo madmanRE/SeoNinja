@@ -64,7 +64,7 @@ async def get_positions_both(request: Request):
     region = form.get("region")
     queries = list(map(lambda query: query.strip(), form.get("queriesinput").split("\n")))
     result = jsonable_encoder(get_position_megaindex(domain, queries, region))
-
+    return templates.TemplateResponse("src/get_positions.html", {"request": request, "data": result})
 
 class UrlData(BaseModel):
     url: str

@@ -116,18 +116,13 @@
                            style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px;">
                     <select name="region"
                             style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px;">
-                        <option value="1">Москва и Московская область</option>
-                        <option value="213">Москва</option>
-                        <option value="2">Санкт-Петербург</option>
-                        <option value="4">Белгород</option>
-                        <option value="5">Иваново</option>
-                        <option value="6">Калуга</option>
-                        <option value="7">Кострома</option>
-                        <option value="8">Курск</option>
+                        {% for i in data %}
+                        <option value="{{i[0]}}">{{i[1]}}</option>
+                        {% endfor %}
                     </select>
                     <textarea name="queriesinput" rows="5" cols="40"
                               style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px;"></textarea>
-                    <button type="button"
+                    <button type="submit"
                             style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
                         Go
                     </button>
