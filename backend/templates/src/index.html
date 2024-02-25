@@ -181,6 +181,25 @@
             <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~3 сек</p>
         </div>
     </li>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <a href="/instruments/gsc_api">
+            <div class="flex min-w-0 gap-x-4">
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                     src="{{ url_for ('static', path='img/google_1199419.png') }}"
+                     alt="">
+                <div class="min-w-0 flex-auto">
+                    <p class="text-sm font-semibold leading-6 text-gray-900">Выгрузка запросов из GSC</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Выгрузка: list of queries from big_data</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                            style="color: green">работает</span></p>
+                </div>
+            </div>
+        </a>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~10 мин</p>
+        </div>
+    </li>
 </ul>
 {% endblock %}
 {% block script %}

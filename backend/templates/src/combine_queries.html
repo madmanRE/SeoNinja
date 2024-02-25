@@ -76,10 +76,11 @@ text += itemText + "\n";
 });
 navigator.clipboard.writeText(text)
 .then(() => {
-console.log('Text copied to clipboard');
+alert('Вы скопировали запросы!');
 })
 .catch(err => {
 console.error('Error in copying text: ', err);
 });
 }
+
 {% endblock %}

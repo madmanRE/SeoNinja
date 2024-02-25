@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+
+input, textarea {
+    display: inline-block;
+    border: 0.5px solid;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0);"
+}
+label {
+    font-family: Georgia, serif;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="/instruments/gsc_api_result">
+    <p>
+        <label for="domain">Введите домен:</label><br>
+        <input class="my_form" type="text" id="domain" name="domain" style="width: 300px; padding-left: 5px;">
+    </p>
+    <p>
+        <label for="position">Введите позицию выше которой нужно брать запросы:</label><br>
+        <input class="my_form" type="text" id="position" name="position" style="width: 100px; padding-left: 5px;">
+    </p>
+    <p>
+        <label for="days">Введите количество дней, за которые необходимо собрать статистику:</label><br>
+        <input class="my_form" type="text" id="days" name="days" style="width: 100px; padding-left: 5px;">
+    </p>
+    <p>
+        <label for="days">URL содержит:</label><br>
+        <input class="my_form" type="text" id="url-filter" name="url-filter" style="width: 300px; padding-left: 5px;">
+    </p>
+    <p>
+        <label for="minus_words">Введите список минус-слов:</label><br>
+        <textarea class="my_form" id="minus_words" name="minus_words" rows="10" cols="70"
+                  style="padding-left: 5px;"></textarea>
+
+    </p>
+    <br>
+    <button type="submit" id="combine"
+            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 150px;">
+        Отправить
+    </button>
+</form>
+
+{% endblock %}
+{% block script %}
+
+
+const formElements = document.querySelectorAll(".my_form");
+
+function coloredForm() {
+formElements.forEach((elem) => {
+if (elem.value.trim() !== "") {
+elem.style.backgroundColor = "PaleGreen";
+} else {
+elem.style.backgroundColor = "";
+}
+});
+}
+
+
+formElements.forEach((elem) => {
+elem.addEventListener("change", coloredForm);
+});
+
+{% endblock %}
