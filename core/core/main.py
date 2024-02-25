@@ -17,14 +17,8 @@ def get_extraction_result(
     minus_words: List[str] = None,
 ) -> None:
     creds = "core/core/client_secret.json"
-    print(1)
     df = extract_data(site_domain, creds, days)
-    print(2)
     df = api_filter_by_position(df, gt_position)
-    print(3)
     df = api_filter_by_page(df, url_filter)
-    print(4)
     df = api_filter_by_minus_words(df, minus_words)
-    print(5)
     clustered_df = api_clusterer(df)
-    print(6)

@@ -163,6 +163,31 @@
         </div>
     </li>
     <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
+        <div class="flex min-w-0 gap-x-4">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                 src="{{ url_for ('static', path='img/search_281781.png') }}"
+                 alt="">
+            <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900">Индексация страниц</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Загрузка: list of url to google index</p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Статус: <span
+                            style="color: green">работает</span></p>
+                <form action="/instruments/indexing_api" method="POST" class="hidden">
+                    <textarea name="urls" rows="10" cols="40"
+                              style="border: 0.5px solid; border-radius: 4px; margin: 5px; padding-left: 5px"></textarea>
+                    <button type="submit"
+                            style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; width: 70px;">
+                        Go
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p class="text-sm leading-6 text-gray-900">Стоимость: <span style="color: green">Бесплатно</span></p>
+            <p class="mt-1 text-xs leading-5 text-gray-500">Скорость анализа: ~3 сек</p>
+        </div>
+    </li>
+    <li class="flex justify-between gap-x-6 py-5" style="cursor: pointer;">
         <a href="/instruments/combine_queries">
             <div class="flex min-w-0 gap-x-4">
                 <img class="h-12 w-12 flex-none rounded-full bg-gray-50"

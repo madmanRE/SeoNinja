@@ -1,6 +1,7 @@
 from core.parsing_data import parse_data
 from core.lemmatized_text import parse_text, get_lems
 from core.get_site_position import get_position_megaindex
+from core.index_pages import list_urls_to_index
 from fastapi.encoders import jsonable_encoder
 from fastapi import APIRouter, Depends, status, Request
 import httpx
@@ -29,6 +30,15 @@ def clean_domain(domain):
     if cleaned_domain[-1] == "/":
         cleaned_domain = cleaned_domain[:-1]
     return cleaned_domain
+
+
+@instruments_routers.post("/indexing_api")
+async def indexing_api(request: Request):
+    form = await request.form()
+    urls = form.get("urls")
+    urls = list(map(lambda url: url.strip(), urls.split("\n")))
+    list_urls_to_index(urls)
+    return templates.TemplateResponse("src/index.html", {"request": request})
 
 
 @instruments_routers.post("/gsc_api_result")
